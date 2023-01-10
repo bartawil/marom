@@ -1,79 +1,132 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Recipe Catalog</legend>
-                <div class="form-group">
-                    {{ form.name.label(class="form-control-label") }}
-                    {% if form.name.errors %}
-                        {{ form.name(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.name.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.name(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.descriptor.label(class="form-control-label") }}
-                    {% if form.descriptor.errors %}
-                        {{ form.descriptor(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.descriptor.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.descriptor(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.steps.label(class="form-control-label") }}
-                    {% if form.steps.errors %}
-                        {{ form.steps(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.steps.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.steps(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.n_ingredient.label(class="form-control-label") }}
-                    {% if form.n_ingredient.errors %}
-                        {{ form.n_ingredient(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.n_ingredient.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.n_ingredient(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.minutes.label(class="form-control-label") }}
-                    {% if form.minutes.errors %}
-                        {{ form.minutes(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.minutes.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.minutes(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-            </fieldset>
+<link rel="stylesheet" href="../static/Recipe_Catalog.css" xmlns="http://www.w3.org/1999/html"/>
+<div class="content-section search-form">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 search-cat">Search by recipe</legend>
             <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+                {{ form.name.label(class="form-control-label") }}
+                {% if form.name.errors %}
+                {{ form.name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.name(class="form-control form-control-lg") }}
+                {% endif %}
             </div>
-        </form>
-    </div>
+            <div class="form-group">
+                {{ form.user_name.label(class="form-control-label") }}
+                {% if form.user_name.errors %}
+                {{ form.user_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.user_name.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.user_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group row text-center">
+                <div class="col form-group">
+                    {{ form.calories.label(class="form-control-label") }}
+                    {% if form.calories.errors %}
+                    {{ form.calories(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.calories.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.calories(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="col form-group">
+                    {{ form.fat.label(class="form-control-label") }}
+                    {% if form.fat.errors %}
+                    {{ form.fat(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.fat.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.fat(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="col form-group">
+                    {{ form.protein.label(class="form-control-label") }}
+                    {% if form.protein.errors %}
+                    {{ form.protein(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.protein.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.protein(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class=" form-group row">
+                <div class="col">
+                    {{ form.sort_by(class="form-control form-control-lg") }}
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+<div class="content-section search-form">
+    <form method="POST" action="like_and_comments_search">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 search-cat">Search by Likes and Comments</legend>
+            <div class="form-group row text-center">
+                <div class="col form-group">
+                    {{ form.likes.label(class="form-control-label") }}
+                    {% if form.likes.errors %}
+                    {{ form.likes(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.likes.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.likes(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="col form-group">
+                    {{ form.comments.label(class="form-control-label") }}
+                    {% if form.comments.errors %}
+                    {{ form.comments(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.comments.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.comments(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class=" form-group row">
+                <div class="col">
+                    {{ form.sort_by.label(class="form-control-label") }}
+                    {{ form.sort_by(class="form-control form-control-lg") }}
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
 {% endblock content %}
